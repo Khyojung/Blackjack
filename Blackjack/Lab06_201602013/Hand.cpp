@@ -48,7 +48,7 @@ bool Hand::addCard(Card* newCard){
 
 	//합계를 계산한다. 
 	//스페이드 A가 나올 경우를 확인한다.
-	if(newCard->getShapeNumber() == 0 && newCard->getValue() == 1){
+	if(newCard->getShape() == 0 && newCard->getValue() == 1){
 		
 		sum[0] += newCard->getValue();
 		sum[1] += newCard->getValue() + 10;
@@ -104,7 +104,7 @@ void Hand::clear(){
 //private method
 bool Hand::checkAce(Card* aCard){
 	//받은 카드가 에이스인지 판독
-	if(aCard->getShapeNumber() == 0 && aCard->getValue() == 1)
+	if(aCard->getShape() == 0 && aCard->getValue() == 1)
 		return true;
 	return false;
 }

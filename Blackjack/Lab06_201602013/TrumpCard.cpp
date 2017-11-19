@@ -6,34 +6,17 @@ using namespace std;
 
 //Constructor
 TrumpCard::TrumpCard(){
-	value = 0;
-	suit = 0;
 }
-TrumpCard::TrumpCard(int newSuit, int newValue){
-	value = newValue;
-	suit = newSuit;
+TrumpCard::TrumpCard(int aShape, int aValue){
+	setShape(aShape);
+	setValue(aValue);
 }
 TrumpCard::~TrumpCard(){
 }
 
-// getter && setter
-int TrumpCard::getValue(){
-	return value;
-}
-void TrumpCard::setValue(int aValue){
-	value = aValue;
-}
-int TrumpCard::getSuit(){
-	return suit;
-}
-void TrumpCard::setSuit(int aSuit){
-	suit = aSuit;
-}
-
-
 //public method
 void TrumpCard::printCard(){
-		switch(suit){
+		switch(getShape()){
 		case 0 :
 			cout << "♠";
 			break;
@@ -48,7 +31,7 @@ void TrumpCard::printCard(){
 			break;
 		//숫자를 출력한다.
 		//A J Q K를 고려한다.
-		switch(value){
+		switch(getValue()){
 		case 1:
 			cout << "A";
 			break;
@@ -62,7 +45,7 @@ void TrumpCard::printCard(){
 			cout << "K";
 			break;
 		default:
-			cout << value;
+			cout << getValue();
 		}
 	}
 }

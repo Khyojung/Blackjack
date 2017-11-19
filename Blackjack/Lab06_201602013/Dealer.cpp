@@ -20,10 +20,16 @@ Dealer::~Dealer(){
 Hand* Dealer::getHand(){
 	return hand;
 }
+Deck* Dealer::getDeck(){
+	return deck;
+}
 
 //public method
-Card* Dealer::giveCard(){
-	return deck->giveCard();
+Card* Dealer::giveCard(int cardChoice){
+	if(cardChoice == 1)
+		return deck->giveTrumpCard();
+	else if(cardChoice == 2)
+		return deck->giveRummikubCard();
 }
 void Dealer::showFirstCard(){
 	printCard(hand->getCard(0));

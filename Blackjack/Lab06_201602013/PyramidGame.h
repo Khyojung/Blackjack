@@ -3,7 +3,8 @@
 #include "Dealer.h"
 #include "Deck.h"
 #include "Card.h"
-#include "Deck.h"
+#include "TrumpCard.h"
+#include "RummikubCard.h"
 
 class PyramidGame : public Game{
 public :
@@ -16,11 +17,12 @@ public :
 		
 private :
 	//N
-	void setCards();
+	void setCards(int cardChoice);
 	void printPyramid();
 	void printCard(Card* aCard);
 	bool possibleCard(int row, int col);
 	bool count13(Card* firstCard, Card* secondCard);
+	
 	void clear() override;
 
 	void countMoneyWin() override;

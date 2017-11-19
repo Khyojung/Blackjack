@@ -30,7 +30,19 @@ void PyramidGame::startGame(){
 	getPlayer()->setMoney(1);
 
 	//본격 게임을 시작한다.
-	while( ask() ){
+	do{
+		//어느 카드를 쓸 것인지 확인다.
+		int cardChoice= cardAsk();
+
+		if(cardChoice == 1)
+			_deck->createTrump();
+		else if(cardChoice == 2)
+			_deck->createRummicub();
+
+		setCards(cardChoice);
+
+
+		//본게임 시작
 		cout << "===========================================================" << endl;
 		cout << "★★★PyramidGAME START★★★" << endl;
 		cout << "===========================================================" << endl;
@@ -39,8 +51,8 @@ void PyramidGame::startGame(){
 		cout << "★★★GOOD LUCK★★★" << endl;
 		cout << endl;
 
-		//초반 카드를 섞는다. setting
-		setCards();
+
+		//본격 게임 시작
 		int mineCardNumber = 0;
 
 		do{
@@ -154,18 +166,28 @@ void PyramidGame::startGame(){
 		cout << "Your Score : " << score <<  endl;
 		clear();
 		cout << "===========================================================\n\n" << endl;
-	}
+	}while( ask() );
 }
 
 //private method
-void PyramidGame::setCards(){
+void PyramidGame::setCards(int cardChoice){
 	for(int pyramidSettingHigh = 1; pyramidSettingHigh <= 7; pyramidSettingHigh++){
 		for(int pyramidSettingWide = 1; pyramidSettingWide <= pyramidSettingHigh; pyramidSettingWide++){
-			pyramidCard[pyramidSettingHigh][pyramidSettingWide] = _deck->giveCard();
+			if(cardChoice == 1){
+				pyramidCard[pyramidSettingHigh][pyramidSettingWide] = _deck->giveTrumpCard();
+			}
+			else if(cardChoice == 2){
+				pyramidCard[pyramidSettingHigh][pyramidSettingWide] = _deck->giveRummikubCard();
+			}
 		}
 	}
 	for(int pack = 0; pack < 24; pack++){
-		getPlayer()->getHand()->addCard(_deck->giveCard());
+		if(cardChoice == 1){
+			getPlayer()->getHand()->addCard(_deck->giveTrumpCard());
+		}
+		else if(cardChoice == 2){
+			getPlayer()->getHand()->addCard(_deck->giveRummikubCard());
+		}
 	}
 }
 void PyramidGame::printPyramid(){

@@ -1,15 +1,11 @@
 #ifndef __RUMMIKUBCARD_H_
 #define __RUMMIKUBCARD_H_
-class RummikubCard{
+#include "Card.h"
+class RummikubCard : public Card{
 public :
 	RummikubCard();
-	RummikubCard(int newColor, int newNumber);
+	RummikubCard(int aShape, int aValue);
 	~RummikubCard();
-
-	int getNumber();
-	void setNumber(int aNumber);
-	int getColor();
-	void setColor(int aColor);
 
 	void printCard() override;
 

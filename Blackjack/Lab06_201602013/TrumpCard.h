@@ -1,20 +1,13 @@
 #ifndef __TRUMPCARD_H_
 #define __TRUMPCARD_H_
-class TrumpCard{
+#include "Card.h"
+
+class TrumpCard : public Card{
 public :
 	TrumpCard();
-	TrumpCard(int newShapeNumber, int newValue);
+	TrumpCard(int aShape, int aValue);
 	~TrumpCard();
 
-	int getValue();
-	void setValue(int aValue);
-	int getSuit(); 
-	void setSuit(int aShapeNumber);
-
 	void printCard() override;
-
-private:
-	int value;
-	int suit;
 };
 #endif

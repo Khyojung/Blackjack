@@ -24,7 +24,17 @@ void BlackjackGame::startGame(){
 	getPlayer()->setMoney();
 
 	//본격 게임을 시작한다.
-	while( ask() ){
+	do{
+		//어느 카드를 쓸 것인지 확인다.
+		int cardChoice= cardAsk();
+
+		if(cardChoice == 1)
+			getDealer()->getDeck()->createTrump();
+		else if(cardChoice == 2)
+			getDealer()->getDeck()->createRummicub();
+
+
+		//게임 시작
 		cout << "===========================================================" << endl;
 		cout << "★★★GAME START★★★" << endl;
 		cout << "===========================================================" << endl;
@@ -36,8 +46,8 @@ void BlackjackGame::startGame(){
 
 		//초반 카드를 준다. setting
 		for(int i = 2; i > 0; i--){
-			getPlayer()->getHand()->addCard(getDealer()->giveCard());
-			getDealer()->getHand()->addCard(getDealer()->giveCard());
+			getPlayer()->getHand()->addCard(getDealer()->giveCard(cardChoice));
+			getDealer()->getHand()->addCard(getDealer()->giveCard(cardChoice));
 		}
 
 		//dealer의 setting card 중 첫 카드를 출력해준다.
@@ -67,7 +77,7 @@ void BlackjackGame::startGame(){
 		else{
 			srand((unsigned int)time(NULL));
 			while(getPlayer()->hitOrStand()){
-				Card* newCard = getDealer()->giveCard();
+				Card* newCard = getDealer()->giveCard(cardChoice);
 				if(getPlayer()->getHand()->addCard(newCard)){
 					getPlayer()->printAllCard();
 					getPlayer()->getHand()->printSum();
@@ -80,7 +90,7 @@ void BlackjackGame::startGame(){
 				//player가 over되지 않고 stand를 하면 딜러가 카드를 받고 다 받으면 출력한다.
 				srand((unsigned int)time(NULL));
 				while(!getDealer()->over17()){
-					Card* newCard = getDealer()->giveCard();
+					Card* newCard = getDealer()->giveCard(cardChoice);
 					getDealer()->getHand()->addCard(newCard);
 				}
 				getDealer()->printAllCard();
@@ -104,7 +114,7 @@ void BlackjackGame::startGame(){
 			cout << "===========================================================\n\n" << endl;
 		}
 		clear();
-	}
+	}while( ask() );
 }
 
 //private method
