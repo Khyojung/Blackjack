@@ -3,15 +3,8 @@
 class Card{
 public :
 	Card();
-	Card(int newShapeNumber, int newValue);
 	~Card();
-	int getValue();
-	void setValue(int aValue);
-	int getShapeNumber(); 
-	void setShapeNumber(int aShapeNumber);
-
-private:
-	int value;
-	int shapeNumber;
+	
+	virtual void printCard()=0;
 };
 #endif
