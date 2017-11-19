@@ -6,11 +6,10 @@ using namespace std;
 
 //Constuctor
 Dealer::Dealer(){
-	deck = new Deck();
+	deck = new Deck<Card>();
 	hand = new Hand();
 }
 Dealer::~Dealer(){
-	deck->~Deck();
 	hand->~Hand();
 //	delete deck;
 //	delete hand;
@@ -20,16 +19,21 @@ Dealer::~Dealer(){
 Hand* Dealer::getHand(){
 	return hand;
 }
-Deck* Dealer::getDeck(){
+template<class T>
+Deck<T>* Dealer::getDeck(){
 	return deck;
 }
 
 //public method
 Card* Dealer::giveCard(int cardChoice){
-	if(cardChoice == 1)
-		return deck->giveTrumpCard();
-	else if(cardChoice == 2)
-		return deck->giveRummikubCard();
+	if(cardChoice == 1){
+		TrumpCard* newCard = NULL;
+		return deck->giveCard(newCard);
+	}
+	else if(cardChoice == 2){
+		RummikubCard* newCard = NULL;
+		return deck->giveCard(newCard);
+	}
 }
 void Dealer::showFirstCard(){
 	printCard(hand->getCard(0));

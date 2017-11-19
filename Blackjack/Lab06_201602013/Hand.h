@@ -19,6 +19,7 @@ public :
 	int finalSum();
 	void printSum();
 	void clear();
+	void calculate(Card* newCard);
 
 private:
 	bool checkAce(Card* aCard);

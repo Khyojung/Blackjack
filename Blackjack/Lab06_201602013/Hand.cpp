@@ -41,10 +41,7 @@ bool Hand::checkBlackjack(){
 	return false;
 }
 
-bool Hand::addCard(Card* newCard){
-	//카드 팩에 카드를 추가 한다.
-	cards[size] = newCard;
-	size++;
+void Hand::calculate(Card* newCard){
 
 	//합계를 계산한다. 
 	//스페이드 A가 나올 경우를 확인한다.
@@ -62,6 +59,13 @@ bool Hand::addCard(Card* newCard){
 		sum[0] += newCard->getValue();
 		sum[1] += newCard->getValue();
 	}
+}
+bool Hand::addCard(Card* newCard){
+	//카드 팩에 카드를 추가 한다.
+	cards[size] = newCard;
+	size++;
+
+	calculate(newCard);
 
 	return true;
 }

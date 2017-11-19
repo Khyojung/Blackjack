@@ -12,7 +12,9 @@ public :
 
 	//GS
 	Hand* getHand();
-	Deck* getDeck();
+	
+	template<class T>
+	Deck<T>* getDeck();
 
 	Card* giveCard(int cardChoice);
 	void showFirstCard();
@@ -21,8 +23,8 @@ public :
 
 private:
 	void printCard(Card* aCard);
-
-	Deck* deck;
+	
+	Deck<Card>* deck;
 	Hand* hand;
 };
 #endif
