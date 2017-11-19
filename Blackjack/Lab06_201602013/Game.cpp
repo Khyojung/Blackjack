@@ -62,6 +62,13 @@ bool Game::ask(){
 		return ask();
 	}
 }
+int Game::cardAsk(){
+		int cardChoice;
+		cout << "which card will you use?(1.TrumpCard, 2.RummicubCard): " ;
+		cin >> cardChoice;
+		cout << endl;
+		return cardChoice;
+}
 void Game::countMoneyWin(){
 	_player->setMoney((getBet() * 2) + _player->getMoney()); ///////////////// 코드수정
 	cout <<	"YOU HAVE : " << _player->getMoney() << "$" << endl;

@@ -26,6 +26,7 @@ protected :
 		
 	//N
 	bool ask();
+	int cardAsk();
 
 	virtual void countMoneyWin() = 0;
 	virtual void countMoneyLose() = 0;

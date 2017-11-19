@@ -12,8 +12,9 @@ public :
 
 	//GS
 	Hand* getHand();
+	Deck* getDeck();
 
-	Card* giveCard();
+	Card* giveCard(int cardChoice);
 	void showFirstCard();
 	void printAllCard();
 	bool over17();

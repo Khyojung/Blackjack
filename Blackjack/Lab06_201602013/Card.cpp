@@ -3,15 +3,16 @@
 
 //Constructor
 Card::Card(){
+	shape = 0;
 	value = 0;
-	shapeNumber = 0;
 }
-Card::Card(int newShapeNumber, int newValue){
-	value = newValue;
-	shapeNumber = newShapeNumber;
+Card::Card(int aShape, int aValue){
+	shape = aShape;
+	value = aValue;
 }
 Card::~Card(){
 }
+
 
 // getter && setter
 int Card::getValue(){
@@ -20,9 +21,9 @@ int Card::getValue(){
 void Card::setValue(int aValue){
 	value = aValue;
 }
-int Card::getShapeNumber(){
-	return shapeNumber;
+int Card::getShape(){
+	return shape;
 }
-void Card::setShapeNumber(int aShapeNumber){
-	shapeNumber = aShapeNumber;
+void Card::setShape(int aShape){
+	shape = aShape;
 }
