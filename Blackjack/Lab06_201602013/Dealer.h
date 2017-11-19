@@ -11,10 +11,8 @@ public :
 	~Dealer();
 
 	//GS
-	Hand* getHand();
-	
-	template<class T>
-	Deck<T>* getDeck();
+	Hand<Card*>* getHand();
+	Deck* getDeck();
 
 	Card* giveCard(int cardChoice);
 	void showFirstCard();
@@ -23,8 +21,8 @@ public :
 
 private:
 	void printCard(Card* aCard);
-	
-	Deck<Card>* deck;
-	Hand* hand;
+
+	Deck* deck;
+	Hand<Card*>* hand;
 };
 #endif

@@ -6,34 +6,30 @@ using namespace std;
 
 //Constuctor
 Dealer::Dealer(){
-	deck = new Deck<Card>();
-	hand = new Hand();
+	deck = new Deck();
+	hand = new Hand<Card*>();
 }
 Dealer::~Dealer(){
+	deck->~Deck();
 	hand->~Hand();
 //	delete deck;
 //	delete hand;
 }
 
 //getter & setter
-Hand* Dealer::getHand(){
+Hand<Card*>* Dealer::getHand(){
 	return hand;
 }
-template<class T>
-Deck<T>* Dealer::getDeck(){
+Deck* Dealer::getDeck(){
 	return deck;
 }
 
 //public method
 Card* Dealer::giveCard(int cardChoice){
-	if(cardChoice == 1){
-		TrumpCard* newCard = NULL;
-		return deck->giveCard(newCard);
-	}
-	else if(cardChoice == 2){
-		RummikubCard* newCard = NULL;
-		return deck->giveCard(newCard);
-	}
+	if(cardChoice == 1)
+		return deck->giveTrumpCard();
+	else if(cardChoice == 2)
+		return deck->giveRummikubCard();
 }
 void Dealer::showFirstCard(){
 	printCard(hand->getCard(0));

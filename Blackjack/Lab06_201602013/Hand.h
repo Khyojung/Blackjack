@@ -1,7 +1,21 @@
 #ifndef __HAND_H_
 #define __HAND_H_
 #include "Card.h"
+#include <map>
+
+using namespace std;
+
+template<class T>
+
 class Hand{
+private:
+	bool checkAce(Card* aCard);
+
+	int size;
+	int sum[2];
+	//Card* cards[30];
+
+	map<int, T> cards;
 public :
 	//C
 	Hand();
@@ -21,11 +35,6 @@ public :
 	void clear();
 	void calculate(Card* newCard);
 
-private:
-	bool checkAce(Card* aCard);
 
-	int size;
-	int sum[2];
-	Card* cards[30];
 };
 #endif
