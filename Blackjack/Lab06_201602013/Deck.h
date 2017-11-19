@@ -4,22 +4,27 @@
 #include "RummikubCard.h"
 #include "TrumpCard.h"
 
+template<class T>
 class Deck{
 public :
-	Deck();
-	~Deck();
+	Deck<T>();
+	~Deck<T>();
 
+	void create();
 	void createTrump();
 	void createRummicub();
-	Card* giveTrumpCard();
-	Card* giveRummikubCard();
+
+	Card* giveCard(T* newCard);
+	//Card* giveTrumpCard();
+	//Card* giveRummikubCard();
 	void clear();
 
 private:
 	bool doesCardExist(Card* aCard);
 
-	TrumpCard* trumpCards[53];
-	RummikubCard* rummikubCards[53];
+	T* cards[53];
+	//TrumpCard* trumpCards[53];
+	//RummikubCard* rummikubCards[53];
 	int noCard[53];
 };
 #endif
