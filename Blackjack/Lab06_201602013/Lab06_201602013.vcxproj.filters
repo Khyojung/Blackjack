@@ -48,6 +48,12 @@
     <ClInclude Include="BlackjackGame.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="RummikubCard.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TrumpCard.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -78,6 +84,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="BlackjackGame.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="RummikubCard.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TrumpCard.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

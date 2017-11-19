@@ -30,74 +30,14 @@ void Dealer::showFirstCard(){
 }
 void Dealer::printCard(Card* aCard){
 	cout << "DEALER : ";
-	switch(aCard->getShapeNumber()){
-	case 0 :
-		cout << "♠";
-		break;
-	case 1 :
-		cout << "♥";
-		break;
-	case 2 :
-		cout << "♣";
-		break;
-	case 3 :
-		cout << "◆";
-		break;
-	} 
-	//숫자를 출력한다.
-	//A J Q K를 고려한다.
-	switch(aCard->getValue()){
-	case 1:
-		cout << "A" << "	";
-		break;
-	case 11:
-		cout << "J" << "	";
-		break;
-	case 12:
-		cout << "Q" << "	";
-		break;
-	case 13:
-		cout << "K" << "	";
-		break;
-	default:
-		cout << aCard->getValue() << "	";
-	}
+	aCard->printCard();
+		cout << "	";
 }
 void Dealer::printAllCard(){
 	cout << "DEALER : " ;
 	for(int i=0; i < hand->getSize(); i++){
-		switch(hand->getCard(i)->getShapeNumber()){
-		case 0 :
-			cout << "♠";
-			break;
-		case 1 :
-			cout << "♥";
-			break;
-		case 2 :
-			cout << "♣";
-			break;
-		case 3 :
-			cout << "◆";
-			break;
-		} 
-		//숫자를 출력한다.
-		//A J Q K를 고려한다.
-		switch(hand->getCard(i)->getValue()){
-		case 1:
-			cout << "A" << "	";
-			break;
-		case 11:
-			cout << "J" << "	";
-			break;
-		case 12:
-			cout << "Q" << "	";
-			break;
-		case 13:
-			cout << "K" << "	";
-			break;
-		default:
-			cout << hand->getCard(i)->getValue() << "	";
-		}
+		hand->getCard(i)->printCard();
+		cout  << "	";
 	}
 }
 bool Dealer::over17(){
