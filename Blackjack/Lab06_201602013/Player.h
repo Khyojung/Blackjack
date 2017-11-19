@@ -12,8 +12,8 @@ public :
 	double getMoney();
 	void setMoney();
 	void setMoney(double newMoney);
-	Hand* getHand();
-	void setHand(Hand* newHand);
+	Hand<Card*>* getHand();
+	void setHand(Hand<Card*>* newHand);
 
 	double betting();
 	bool hitOrStand();
@@ -21,6 +21,6 @@ public :
 
 private:
 	double money;
-	Hand* hand;
+	Hand<Card*>* hand;
 };
 #endif

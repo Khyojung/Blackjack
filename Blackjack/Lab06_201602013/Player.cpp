@@ -6,7 +6,7 @@ using namespace std;
 
 //Constructor
 Player::Player(){
-	hand = new Hand();
+	hand = new Hand<Card*>();
 }
 Player::~Player(){
 	hand->~Hand();
@@ -35,10 +35,10 @@ void Player::setMoney(double newMoney){
 double Player::getMoney(){
 	return money;
 }
-Hand* Player::getHand(){
+Hand<Card*>* Player::getHand(){
 	return hand;
 }
-void Player::setHand(Hand* newHand){
+void Player::setHand(Hand<Card*>* newHand){
 	hand = newHand;
 }
 

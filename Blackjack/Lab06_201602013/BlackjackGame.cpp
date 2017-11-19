@@ -29,9 +29,9 @@ void BlackjackGame::startGame(){
 		int cardChoice= cardAsk();
 
 		if(cardChoice == 1)
-			getDealer()->getDeck<Card>()->createTrump();
+			getDealer()->getDeck()->createTrump();
 		else if(cardChoice == 2)
-			getDealer()->getDeck<Card>()->createRummicub();
+			getDealer()->getDeck()->createRummicub();
 
 
 		//게임 시작

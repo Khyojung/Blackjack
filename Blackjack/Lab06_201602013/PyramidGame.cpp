@@ -8,7 +8,7 @@ using namespace std;
 //Contructor
 PyramidGame::PyramidGame(){
 	setPlayer(new Player());
-	_deck = new Deck<Card>();
+	_deck = new Deck();
 	for(int i = 0; i < 9; i++){
 		for(int j = 0; j < 9; j++){
 			pyramidCard[i][j] = NULL;
@@ -174,23 +174,19 @@ void PyramidGame::setCards(int cardChoice){
 	for(int pyramidSettingHigh = 1; pyramidSettingHigh <= 7; pyramidSettingHigh++){
 		for(int pyramidSettingWide = 1; pyramidSettingWide <= pyramidSettingHigh; pyramidSettingWide++){
 			if(cardChoice == 1){
-				TrumpCard* newCard = NULL;
-				pyramidCard[pyramidSettingHigh][pyramidSettingWide] = _deck->giveCard(newCard);
+				pyramidCard[pyramidSettingHigh][pyramidSettingWide] = _deck->giveTrumpCard();
 			}
 			else if(cardChoice == 2){
-				RummikubCard* newCard = NULL;
-				pyramidCard[pyramidSettingHigh][pyramidSettingWide] = _deck->giveCard(newCard);
+				pyramidCard[pyramidSettingHigh][pyramidSettingWide] = _deck->giveRummikubCard();
 			}
 		}
 	}
 	for(int pack = 0; pack < 24; pack++){
 		if(cardChoice == 1){
-			TrumpCard* newCard = NULL;
-			getPlayer()->getHand()->addCard(_deck->giveCard(newCard));
+			getPlayer()->getHand()->addCard(_deck->giveTrumpCard());
 		}
 		else if(cardChoice == 2){
-			RummikubCard* newCard = NULL;
-			getPlayer()->getHand()->addCard(_deck->giveCard(newCard));
+			getPlayer()->getHand()->addCard(_deck->giveRummikubCard());
 		}
 	}
 }
@@ -246,11 +242,10 @@ void PyramidGame::countMoneyLose(){
 void PyramidGame::countMoneyCompare(){
 }
 
-template<class T>
 void PyramidGame::clear(){
 	getPlayer()->getHand()->clear();
-	_deck->~Deck<T>();
-	_deck = new Deck<T>();
+	_deck->~Deck();
+	_deck = new Deck();
 	for(int i = 0; i < 9; i++){
 		for(int j = 0; j < 9; j++){
 			pyramidCard[i][j] = NULL;

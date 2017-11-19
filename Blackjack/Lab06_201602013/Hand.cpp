@@ -5,26 +5,29 @@
 using namespace std;
 
 //Constructor
-Hand::Hand(){
+Hand<Card*>::Hand(){
 	size = 0;
 	sum[0] = 0;
 	sum[1] = 0;
 }
-Hand::~Hand(){
+
+Hand<Card*>::~Hand(){
 }
 
 //getter & setter
-Card* Hand::getCard(int number){
-	return cards[number];
+Card* Hand<Card*>::getCard(int number){
+	map<int, T>::iterator iter;
+	iter = cards.find(number);
+	return (*iter).second;
 }
-int Hand::getSize(){
+int Hand<Card*>::getSize(){
 	return size;
 }
-int* Hand::getSum(){
+int* Hand<Card*>::getSum(){
 	return sum;
 }
 
-bool Hand::checkBlackjack(){
+bool Hand<Card*>::checkBlackjack(){
 	//스페이드 A & 10
 	if(checkAce(getCard(0))){
 		int aValue = getCard(1)->getValue();
@@ -41,8 +44,7 @@ bool Hand::checkBlackjack(){
 	return false;
 }
 
-void Hand::calculate(Card* newCard){
-
+void Hand<Card*>::calculate(Card* newCard){
 	//합계를 계산한다. 
 	//스페이드 A가 나올 경우를 확인한다.
 	if(newCard->getShape() == 0 && newCard->getValue() == 1){
@@ -60,35 +62,35 @@ void Hand::calculate(Card* newCard){
 		sum[1] += newCard->getValue();
 	}
 }
-bool Hand::addCard(Card* newCard){
+
+bool Hand<Card*>::addCard(Card* newCard){
 	//카드 팩에 카드를 추가 한다.
-	cards[size] = newCard;
+	cards.insert(pair<int, T>(size, newCard));
 	size++;
 
 	calculate(newCard);
 
 	return true;
 }
-void Hand::removeCard(int number){
-	cards[number] = NULL;
-	for(int i = number; i < size; i++){
-		cards[i] = cards[i+1];
-	}
-	cards[size] = NULL;
+
+void Hand<Card*>::removeCard(int number){
+	cards.erase(size);
 	size--;
 }
-bool Hand::over21(){
+
+bool Hand<Card*>::over21(){
 	if(sum[0] > 21 && sum[1] > 21)
 		return true;
 	return false;
 }
-int Hand::finalSum(){
+
+int Hand<Card*>::finalSum(){
 	if(sum[1] > 21)
 		return sum[0];
 	else
 		return sum[1];
 }
-void Hand::printSum(){
+void Hand<Card*>::printSum(){
 	cout << "POINT : ";
 	if(sum[1] > 21)
 		cout << sum[0] << "\n" << endl;
@@ -100,13 +102,15 @@ void Hand::printSum(){
 	}
 	cout << endl;
 }
-void Hand::clear(){
+
+void Hand<Card*>::clear(){
 	size = 0;
 	sum[0] = 0;
 	sum[1] = 0;
 }
 //private method
-bool Hand::checkAce(Card* aCard){
+template<>
+bool Hand<Card*>::checkAce(Card* aCard){
 	//받은 카드가 에이스인지 판독
 	if(aCard->getShape() == 0 && aCard->getValue() == 1)
 		return true;

@@ -29,7 +29,7 @@ private :
 	void countMoneyLose() override;
 	void countMoneyCompare() override;
 
-	Deck<Card>* _deck;
+	Deck* _deck;
 	Card* pyramidCard[9][9];
 	int score;
 };
