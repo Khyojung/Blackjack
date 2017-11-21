@@ -72,10 +72,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlackjackGame.h" />
+    <ClInclude Include="CalcAdapter.h" />
+    <ClInclude Include="Calc.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="Dealer.h" />
     <ClInclude Include="Deck.h" />
@@ -90,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlackjackGame.cpp" />
+    <ClCompile Include="CalcAdapter.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="Dealer.cpp" />
     <ClCompile Include="Deck.cpp" />

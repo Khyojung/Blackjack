@@ -18,6 +18,8 @@ public :
 	void showFirstCard();
 	void printAllCard();
 	bool over17();
+	void setHand(Hand<Card*>* newHand);
+
 
 private:
 	void printCard(Card* aCard);

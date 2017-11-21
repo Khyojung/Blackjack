@@ -20,6 +20,9 @@ Dealer::~Dealer(){
 Hand<Card*>* Dealer::getHand(){
 	return hand;
 }
+void Dealer::setHand(Hand<Card*>* newHand){
+	hand = newHand;
+}
 Deck* Dealer::getDeck(){
 	return deck;
 }
@@ -47,7 +50,7 @@ void Dealer::printAllCard(){
 	}
 }
 bool Dealer::over17(){
-	if(hand->getSum()[0] > 16 && hand->getSum()[1] > 16)
+	if(hand->cal.getValue() > 16)
 		return true;
 	return false;
 }
