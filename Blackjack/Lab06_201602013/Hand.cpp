@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Hand.h"
+#include"CalcAdapter.h"
 #include <iostream>
 
 using namespace std;
@@ -7,8 +8,8 @@ using namespace std;
 //Constructor
 Hand<Card*>::Hand(){
 	size = 0;
-	sum[0] = 0;
-	sum[1] = 0;
+	cal = new CalcAdapter();
+	
 }
 
 Hand<Card*>::~Hand(){
@@ -22,9 +23,6 @@ Card* Hand<Card*>::getCard(int number){
 }
 int Hand<Card*>::getSize(){
 	return size;
-}
-int* Hand<Card*>::getSum(){
-	return sum;
 }
 
 bool Hand<Card*>::checkBlackjack(){
@@ -44,31 +42,15 @@ bool Hand<Card*>::checkBlackjack(){
 	return false;
 }
 
-void Hand<Card*>::calculate(Card* newCard){
-	//합계를 계산한다. 
-	//스페이드 A가 나올 경우를 확인한다.
-	if(newCard->getShape() == 0 && newCard->getValue() == 1){
-		
-		sum[0] += newCard->getValue();
-		sum[1] += newCard->getValue() + 10;
-	}
-	//J Q K가 나올 경우를 계산한다.
-	else if(newCard->getValue() > 10){
-			sum[0] += 10;
-			sum[1] += 10;
-	}
-	else{
-		sum[0] += newCard->getValue();
-		sum[1] += newCard->getValue();
-	}
-}
+
 
 bool Hand<Card*>::addCard(Card* newCard){
+	
 	//카드 팩에 카드를 추가 한다.
 	cards.insert(pair<int, T>(size, newCard));
 	size++;
 
-	calculate(newCard);
+	cal.calculate(newCard);
 
 	return true;
 }
@@ -79,34 +61,24 @@ void Hand<Card*>::removeCard(int number){
 }
 
 bool Hand<Card*>::over21(){
-	if(sum[0] > 21 && sum[1] > 21)
+	// sum[0]가 21을 넘으면 sum [1]은 무조건 21을 넘는다. 
+	if(cal.getValue() > 21)
 		return true;
 	return false;
 }
 
 int Hand<Card*>::finalSum(){
-	if(sum[1] > 21)
-		return sum[0];
-	else
-		return sum[1];
+	return cal.getValue();
 }
 void Hand<Card*>::printSum(){
 	cout << "POINT : ";
-	if(sum[1] > 21)
-		cout << sum[0] << "\n" << endl;
-	else{
-		cout << sum[0] << "	";
-		if(sum[0] != sum[1])
-			cout << sum[1] << "\n";
-		cout << endl;
-	}
+	cout << cal.getValue() << "\n" << endl;
+
 	cout << endl;
 }
 
 void Hand<Card*>::clear(){
 	size = 0;
-	sum[0] = 0;
-	sum[1] = 0;
 }
 //private method
 template<>

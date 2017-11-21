@@ -1,6 +1,7 @@
 #ifndef __HAND_H_
 #define __HAND_H_
 #include "Card.h"
+#include "CalcAdapter.h"
 #include <map>
 
 using namespace std;
@@ -12,7 +13,8 @@ private:
 	bool checkAce(Card* aCard);
 
 	int size;
-	int sum[2];
+	CalcAdapter cal;
+
 	//Card* cards[30];
 
 	map<int, T> cards;
@@ -33,7 +35,7 @@ public :
 	int finalSum();
 	void printSum();
 	void clear();
-	void calculate(Card* newCard);
+	
 
 
 };
