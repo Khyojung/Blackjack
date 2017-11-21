@@ -14,4 +14,4 @@ public:
 	int getValue() override;
 	
 	void calculate(Card* newCard);
-}
+};

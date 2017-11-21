@@ -8,7 +8,7 @@ using namespace std;
 //Constructor
 Hand<Card*>::Hand(){
 	size = 0;
-	cal = new CalcAdapter();
+	cal = CalcAdapter();
 	
 }
 
@@ -28,12 +28,12 @@ int Hand<Card*>::getSize(){
 bool Hand<Card*>::checkBlackjack(){
 	//스페이드 A & 10
 	if(checkAce(getCard(0))){
-		int aValue = getCard(1)->getValue();
+		int aValue = cal.getValue();
 		if(aValue == 10 || aValue == 11 || aValue == 12 || aValue == 13)
 			return true;
 	}
 	//10 & 스페이드 A
-	int aValue = getCard(0)->getValue();
+	int aValue = cal.getValue();
 	if(aValue == 10 || aValue == 11 || aValue == 12 || aValue == 13){
 		if(checkAce(getCard(1)))
 			return true;
@@ -79,6 +79,7 @@ void Hand<Card*>::printSum(){
 
 void Hand<Card*>::clear(){
 	size = 0;
+	cal.~CalcAdapter();
 }
 //private method
 template<>

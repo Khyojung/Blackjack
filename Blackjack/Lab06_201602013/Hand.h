@@ -13,12 +13,14 @@ private:
 	bool checkAce(Card* aCard);
 
 	int size;
-	CalcAdapter cal;
+
 
 	//Card* cards[30];
 
 	map<int, T> cards;
 public :
+	CalcAdapter cal;
+	
 	//C
 	Hand();
 	~Hand();

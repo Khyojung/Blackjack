@@ -25,6 +25,12 @@ void BlackjackGame::startGame(){
 
 	//본격 게임을 시작한다.
 	do{
+		getPlayer()->getHand()->~Hand();
+		getDealer()->getHand()->~Hand();
+
+		getDealer()->setHand(new Hand<Card*>());
+		getPlayer()->setHand(new Hand<Card*>());
+		
 		//어느 카드를 쓸 것인지 확인다.
 		int cardChoice= cardAsk();
 
